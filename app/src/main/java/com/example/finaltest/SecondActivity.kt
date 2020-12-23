@@ -11,6 +11,7 @@ import com.example.finaltest.gamefragment.model.GameFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_second.*
 
+const val CHAT_INTENT = "com.example.fragmentdemo.Chart.New"
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +36,26 @@ class SecondActivity : AppCompatActivity() {
             true
         }
 
+        val intentFilter = IntentFilter(CHAT_INTENT)
+        val receiver = MyReceiver()
+        registerReceiver(receiver,intentFilter)
+
 
     }
 
+    fun printFragments() {
+        supportFragmentManager.fragments.forEach {
+            Log.d("Fragment","id: ${it}")
+        }
+
+    }
+
+
+}
+
+class MyReceiver: BroadcastReceiver() {
+    override fun onReceive(p0: Context?, p1: Intent?) {
+        Log.d("BroadcastReceiver","onReceive")
+    }
 
 }

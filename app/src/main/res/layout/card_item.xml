@@ -3,10 +3,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="3dp">
-    <com.example.fragmentdemo.gamefragment.CardButton
+
+    <com.example.finaltest.gamefragment.model.CardButton
         android:id="@+id/cardButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:text="A*" />
+        android:textSize="20sp" />
 </LinearLayout>

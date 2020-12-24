@@ -9,7 +9,7 @@ const val TABLE_NAME = "person"
 
 class MyOpenSqLiteHelper(context:Context,version:Int): SQLiteOpenHelper(context, DB_NAME,null,version) {
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("create table $TABLE_NAME(_id integer primary key autoincrement, name text, password text,admin boolean)")
+        db?.execSQL("create table $TABLE_NAME(_id integer primary key autoincrement, name text, password text,admin boolean,score integer)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {

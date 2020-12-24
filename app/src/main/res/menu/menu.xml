@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/game" android:title="Game" android:icon="@drawable/ic_baseline_videogame_asset_24"/>
-    <item android:id="@+id/blank" android:title="Blank" android:icon="@drawable/ic_baseline_av_timer_24"/>
-    <item android:id="@+id/timer" android:title="Timer" android:icon="@drawable/ic_baseline_android_24"/>
-    <item android:id="@+id/share" android:title="Share" android:icon="@drawable/ic_baseline_add_shopping_cart_24"/>
+    <item android:id="@+id/blank" android:title="Rank" android:icon="@drawable/ic_baseline_view_headline_24"/>
+    <item android:id="@+id/timer" android:title="Information" android:icon="@drawable/ic_baseline_account_circle_24"/>
+
 </menu>

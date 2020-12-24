@@ -34,9 +34,9 @@ class CardMatchingGame(val count: Int):Serializable {
         return cards.get(index)
     }
 
-    val MISMATCH_PENALTY = 2
-    val MATCH_BONUS = 4
-    val COST_TO_CHOOSE = 1
+    val MISMATCH_PENALTY = 1
+    val MATCH_BONUS = 8
+    val COST_TO_CHOOSE = 0
 
     fun chooseCardAtIndex(index: Int) {
         val card= cardAtIndex(index)

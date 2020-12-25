@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val intent = Intent(this,SecondActivity::class.java)
         denglu.setOnClickListener {
+
             val uri = Uri.parse("content://com.example.sqlitedemo.provider/users")
             val cursor = contentResolver.query(uri,null,null,null,null)
             cursor?.apply {

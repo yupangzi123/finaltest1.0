@@ -12,10 +12,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_second.*
 
 const val CHAT_INTENT = "com.example.fragmentdemo.Chart.New"
+
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val fragment1 = GameFragment()
+        val fragment2 = RankFragment()
         setContentView(R.layout.activity_second)
 
         //textView.setText("欢迎您！"+intent.getStringExtra("name"))
@@ -31,6 +33,10 @@ class SecondActivity : AppCompatActivity() {
                 R.id.game ->
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frameLayout,fragment1)
+                        .commit()
+                R.id.rank ->
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout,fragment2)
                         .commit()
             }
             true

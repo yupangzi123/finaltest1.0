@@ -46,11 +46,13 @@ class RankFragment : Fragment() {
         val uri = Uri.parse("content://com.example.sqlitedemo.provider/users")
         val contentResolver = getActivity()?.getContentResolver()
         val cursor = contentResolver?.query(uri,null,null,null,null)
+
         adapter = MyRecyclerViewAdapter(cursor!!)
         recyclerView.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
+
     }
 
     override fun onCreateView(
@@ -94,14 +96,10 @@ class RankFragment : Fragment() {
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val textView_Name: TextView
-            val textView_Password: TextView
-            val textView_Admin: TextView
             val textView_Score: TextView
 
             init {
                 textView_Name = view.findViewById(R.id.textView_Name)
-                textView_Password = view.findViewById(R.id.textView_Age)
-                textView_Admin = view.findViewById(R.id.textView_Gender)
                 textView_Score = view.findViewById(R.id.textView_score)
             }
         }
@@ -115,13 +113,11 @@ class RankFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             cursor.moveToPosition(position)
             holder.textView_Name.text = cursor.getString(cursor.getColumnIndex("name"))
-            holder.textView_Password.text = cursor.getString(cursor.getColumnIndex("password"))
-            holder.textView_Admin.text =
-                if (cursor.getInt(cursor.getColumnIndex("admin")) == 1) "是" else "否"
             holder.textView_Score.text = cursor.getString(cursor.getColumnIndex("score"))
         }
 
         override fun getItemCount(): Int {
+            
             return cursor.count
         }
     }

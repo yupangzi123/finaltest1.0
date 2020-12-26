@@ -1,7 +1,12 @@
 package com.example.finaltest.gamefragment.model
 
+import android.content.ContentValues
 import android.content.res.Configuration
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +17,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.edu.sicnu.cardgame.CardMatchingGame
+import com.example.finaltest.MyOpenSqLiteHelper
 import com.example.finaltest.R
+import com.example.finaltest.TABLE_NAME
+import kotlinx.android.synthetic.main.fragment_game.*
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.lang.Exception
 const val gameFile = "gameFile"
+lateinit var db: SQLiteDatabase
+lateinit var cursor: Cursor
 class GameFragment : Fragment() {
 
     companion object {
@@ -30,16 +40,20 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_game, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         val recylerView = view.findViewById<RecyclerView>(R.id.recylerView1)
         val reset = view.findViewById<Button>(R.id.reset)
-
+        val uri = Uri.parse("content://com.example.sqlitedemo.provider/users")
+        val contentResolver = getActivity()?.getContentResolver()
         val rgame = loadData()
+        Log.d("START","start")
         if (rgame != null) {
             game = rgame
         }else{
@@ -64,14 +78,33 @@ class GameFragment : Fragment() {
             game.reset()
             updateUI()
         }
+
+        submit.setOnClickListener {
+            val score = game.score
+            val name = getActivity()?.intent?.getStringExtra("name")
+            if (name != null) {
+                Log.d("name",name)
+            }
+            val contentValues = ContentValues().apply {
+                put("name",name)
+                put("score",score)
+                Log.d("VALUES","YEAHHHHHH"+score.toString())
+            }
+            //db.update(TABLE_NAME,contentValues,"name = ?", arrayOf(name))
+            if (contentResolver != null) {
+                contentResolver.update(uri,contentValues,"name = ?",arrayOf(name))
+                Log.d("UPDATE","OKKKKKKKKK")
+            }
+                Log.d("wan","wYYYYYYYYYY")
+        }
     }
 
 
     fun updateUI() {
         adapter.notifyDataSetChanged()
         val score = view?.findViewById<TextView>(R.id.score)
-        score?.text = String.format("%s%d",getString(R.string.score),game.score)
-        score?.text = getString(R.string.score) + game.score
+        //score?.text = String.format("%s%d",getString(R.string.score),game.score)
+        score?.text = game.score.toString()
     }
 
     override fun onStop() {

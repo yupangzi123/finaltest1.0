@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">finaltest</string>
+    <string name="app_name">翻牌游戏</string>
     <string name="score">Score:</string>
     <string name="reset">Reset</string>
     <!-- TODO: Remove or change this placeholder text -->

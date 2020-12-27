@@ -33,6 +33,12 @@ class PersonContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        when(uriMatcher.match(uri)){
+            personTable -> db.insert(TABLE_NAME,null,values)
+            personItem -> db.insert(TABLE_NAME,null,values)
+            else -> throw IllegalArgumentException("Unrecognized Uri !")
+        }
+        context?.contentResolver?.notifyChange(uri, null)
         return null
     }
 
@@ -50,10 +56,10 @@ class PersonContentProvider : ContentProvider() {
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
         return when(uriMatcher.match(uri)){
-            personTable -> db.query(TABLE_NAME,null,null,null,null,null,null)
+            personTable -> db.query(TABLE_NAME,null,null,null,null,null,"score desc")
             personItem -> {
                 val name = uri.pathSegments[1]
-                db.query(TABLE_NAME,null,"name = ?", arrayOf(name),null,null,null)
+                db.query(TABLE_NAME,null,"name = ?", arrayOf(name),null,null,"score desc")
             }
             else -> null
         }

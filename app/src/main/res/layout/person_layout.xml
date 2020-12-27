@@ -8,8 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:text="name"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:text="fxk" />
+        android:textColor="#FFFDFD" />
 
     <TextView
         android:id="@+id/textView_score"
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="score"
+        android:textColor="#FFFFFF"
         android:textSize="24sp" />
 
 </LinearLayout>

@@ -19,6 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#FFC107"
                 android:text="用户名"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
@@ -27,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#FFC107"
                 android:text="得分"
                 android:textSize="24sp" />
 
@@ -35,7 +37,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/back2" />
     </LinearLayout>
 
 </FrameLayout>

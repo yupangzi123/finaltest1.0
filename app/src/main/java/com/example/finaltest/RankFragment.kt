@@ -114,11 +114,14 @@ class RankFragment : Fragment() {
             cursor.moveToPosition(position)
             holder.textView_Name.text = cursor.getString(cursor.getColumnIndex("name"))
             holder.textView_Score.text = cursor.getString(cursor.getColumnIndex("score"))
+
         }
 
         override fun getItemCount(): Int {
-            
+
             return cursor.count
         }
+
+
     }
 }

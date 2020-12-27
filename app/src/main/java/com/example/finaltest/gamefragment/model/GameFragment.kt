@@ -13,13 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.edu.sicnu.cardgame.CardMatchingGame
-import com.example.finaltest.MyOpenSqLiteHelper
 import com.example.finaltest.R
-import com.example.finaltest.TABLE_NAME
 import kotlinx.android.synthetic.main.fragment_game.*
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
@@ -94,6 +93,15 @@ class GameFragment : Fragment() {
             if (contentResolver != null) {
                 contentResolver.update(uri,contentValues,"name = ?",arrayOf(name))
                 Log.d("UPDATE","OKKKKKKKKK")
+                val builder: AlertDialog.Builder? = getActivity()?.let { it1 ->
+                    AlertDialog.Builder(
+                        it1
+                    )
+                }
+                builder?.setTitle("提示")
+                builder?.setMessage("提交成功！")
+                builder?.setPositiveButton("确定", null)
+                builder?.show()
             }
                 Log.d("wan","wYYYYYYYYYY")
         }
@@ -102,7 +110,7 @@ class GameFragment : Fragment() {
 
     fun updateUI() {
         adapter.notifyDataSetChanged()
-        val score = view?.findViewById<TextView>(R.id.score)
+        val score = view?.findViewById<TextView>(R.id.tscore)
         //score?.text = String.format("%s%d",getString(R.string.score),game.score)
         score?.text = game.score.toString()
     }

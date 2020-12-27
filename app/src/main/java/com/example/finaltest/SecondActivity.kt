@@ -18,6 +18,7 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val fragment1 = GameFragment()
         val fragment2 = RankFragment()
+        val fragment3 = InformationFragment()
         setContentView(R.layout.activity_second)
 
         //textView.setText("欢迎您！"+intent.getStringExtra("name"))
@@ -37,6 +38,10 @@ class SecondActivity : AppCompatActivity() {
                 R.id.rank ->
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frameLayout,fragment2)
+                        .commit()
+                R.id.info ->
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout,fragment3)
                         .commit()
             }
             true
